@@ -1,0 +1,44 @@
+@import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');
+
+.empty-box{
+    width: 100px;
+    height: 100px;
+    overflow: visible;
+    font-weight: bold;
+    font-size: 60px;
+    text-align: left;
+    /*caret-color: transparent;*/
+}
+
+.correct-box{
+    width: 100px;
+    height: 100px;
+    overflow: visible;
+    background-color: palegreen;
+    font-weight: bold;
+    font-size: 60px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.wrong-box{
+    width: 100px;
+    height: 100px;
+    overflow: visible;
+    background-color: indianred;
+    font-weight: bold;
+    font-size: 60px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.place-box{
+    width: 100px;
+    height: 100px;
+    overflow: visible;
+    background-color: yellow;
+    font-weight: bold;
+    font-size: 60px;
+    text-align: center;
+    border-radius: 15px;
+}
