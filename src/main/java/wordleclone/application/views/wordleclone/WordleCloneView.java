@@ -23,19 +23,18 @@ public class WordleCloneView extends VerticalLayout {
 
     GameLauncher launcher;
     Grid grid;
-
-    MovementHandler handler;
+    MovementHandler MoveHandler;
 
     public WordleCloneView() {
         launcher = new GameLauncher();
-        launcher.newGame(5, WordGetter.getWord());
+        launcher.newGame(7, WordGetter.getWord());
         grid = launcher.getGrid();
 
-        handler = new MovementHandler(grid.getLineCapacity());
+        MoveHandler = new MovementHandler(grid.getLineCapacity());
 
         buildMap();
 
-        handler.focusNext();
+
     }
 
     public void addAndCheckWord(){
@@ -102,7 +101,7 @@ public class WordleCloneView extends VerticalLayout {
         Line cline = grid.getCurrentLine();
         for (int j = 0; j < cline.getCapacity(); j++) {
             Component comp = getFillableSquareComponent();
-            handler.addSquare((TextArea) comp, j);
+            MoveHandler.addSquare((TextArea) comp, j);
             currentLine.add(comp);
         }
         add(currentLine);
