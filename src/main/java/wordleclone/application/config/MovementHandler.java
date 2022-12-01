@@ -35,6 +35,11 @@ public class MovementHandler {
         focus = index;
     }
 
+    public void focusFirst(){
+        currentLine[0].focus();
+        focus = 0;
+    }
+
     public void handleKeyInput(KeyDownEvent k){
         if(Objects.equals(k.getKey().toString(), Key.BACKSPACE.toString())) focusPrev();
         else if (Objects.equals(k.getKey().toString(), Key.ARROW_LEFT.toString())) focusPrev();

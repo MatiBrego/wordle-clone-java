@@ -27,19 +27,17 @@ public class WordleCloneView extends VerticalLayout {
 
     public WordleCloneView() {
         launcher = new GameLauncher();
-        launcher.newGame(7, WordGetter.getWord());
+        launcher.newGame(5, WordGetter.getWord());
         grid = launcher.getGrid();
 
         MoveHandler = new MovementHandler(grid.getLineCapacity());
 
         buildMap();
-
-
     }
 
     public void addAndCheckWord(){
         HorizontalLayout c = (HorizontalLayout) this.getComponentAt(grid.getCurrentLineIndex());
-        for (int i = 0; i < grid.getLineCapacity(); i++) {
+        for (int i = grid.getCurrentLine().getCurrentSquareIndex(); i < grid.getLineCapacity(); i++) {
             TextArea area = (TextArea) c.getComponentAt(i);
             launcher.addLetter(area.getValue().toCharArray()[0]);
         }
@@ -50,17 +48,17 @@ public class WordleCloneView extends VerticalLayout {
     public Component getFilledSquareComponent(Square square){
         switch (square.getStatus()) {
             case CORRECT -> {
-                Label correct = new Label(String.valueOf(square.getLetter()));
+                Label correct = new Label(String.valueOf(Character.toUpperCase(square.getLetter())));
                 correct.addClassName("correct-box");
                 return correct;
             }
             case WRONG_LETTER -> {
-                Label wrong = new Label(String.valueOf(square.getLetter()));
+                Label wrong = new Label(String.valueOf(Character.toUpperCase(square.getLetter())));
                 wrong.addClassName("wrong-box");
                 return wrong;
             }
             case WRONG_PLACE -> {
-                Label place = new Label(String.valueOf(square.getLetter()));
+                Label place = new Label(String.valueOf(Character.toUpperCase(square.getLetter())));
                 place.addClassName("place-box");
                 return place;
             }
@@ -117,7 +115,9 @@ public class WordleCloneView extends VerticalLayout {
         }
         setAlignItems(Alignment.CENTER);
 
-        Button enter = new Button();
+        MoveHandler.focusFirst();
+
+        Button enter = new Button("Check");
         enter.addClickShortcut(Key.ENTER);
         enter.addClickListener(event -> addAndCheckWord());
         add(enter);

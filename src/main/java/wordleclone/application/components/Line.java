@@ -25,6 +25,8 @@ public class Line {
         return squares[currentSquare];
     }
 
+    public int getCurrentSquareIndex(){return currentSquare;}
+
     public Square getSquare(int i) {
         return squares[i];
     }

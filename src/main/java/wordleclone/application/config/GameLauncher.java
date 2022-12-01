@@ -25,20 +25,6 @@ public class GameLauncher {
         }
     }
 
-    public void removeLastLetter(){
-        Line currentLine = grid.getCurrentLine();
-
-        if(!currentLine.currentIsFirst()) {
-            currentLine.moveToPrevSquare();
-            Square square = currentLine.getCurrentSquare();
-            square.removeLetter();
-        }
-    }
-
-    public boolean isInLast(){
-        return grid.getCurrentLine().isFull();
-    }
-
     public boolean checkWord(){
         Line currentLine = grid.getCurrentLine();
         boolean correct = true;
