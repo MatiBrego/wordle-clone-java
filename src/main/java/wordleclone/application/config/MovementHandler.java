@@ -5,6 +5,8 @@ import com.vaadin.flow.component.KeyDownEvent;
 import com.vaadin.flow.component.textfield.TextArea;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MovementHandler {
 
@@ -25,6 +27,8 @@ public class MovementHandler {
         currentLine[--focus].focus();
     }
 
+    public void focusNone(){currentLine[focus].setAutofocus(false);}
+
     public void addSquare(TextArea s, int index){
         currentLine[index] = s;
         s.addFocusListener((Void) -> focusAt(index));
@@ -41,10 +45,11 @@ public class MovementHandler {
     }
 
     public void handleKeyInput(KeyDownEvent k){
-        if(Objects.equals(k.getKey().toString(), Key.BACKSPACE.toString())) focusPrev();
-        else if (Objects.equals(k.getKey().toString(), Key.ARROW_LEFT.toString())) focusPrev();
-        else if(Objects.equals(k.getKey().toString(), Key.ARROW_RIGHT.toString())) focusNext();
-        else focusNext();
+        String input = k.getKey().toString();
+        if(Objects.equals(input, Key.BACKSPACE.toString()) && focus > 0) focusPrev();
+        else if (Objects.equals(input, Key.ARROW_LEFT.toString())) focusPrev();
+        else if(Objects.equals(input, Key.ARROW_RIGHT.toString())) focusNext();
+        else if (Pattern.matches("[a-zA-Z]", input)) focusNext();
     }
 
 }

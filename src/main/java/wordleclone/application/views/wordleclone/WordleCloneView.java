@@ -3,6 +3,7 @@ package wordleclone.application.views.wordleclone;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -25,9 +26,13 @@ public class WordleCloneView extends VerticalLayout {
     Grid grid;
     MovementHandler MoveHandler;
 
+    String word;
+
     public WordleCloneView() {
         launcher = new GameLauncher();
-        launcher.newGame(5, WordGetter.getWord());
+        WordGetter getter = new WordGetter();
+        word = getter.getWord();
+        launcher.newGame(5, word);
         grid = launcher.getGrid();
 
         MoveHandler = new MovementHandler(grid.getLineCapacity());
@@ -41,7 +46,7 @@ public class WordleCloneView extends VerticalLayout {
             TextArea area = (TextArea) c.getComponentAt(i);
             launcher.addLetter(area.getValue().toCharArray()[0]);
         }
-        launcher.checkWord();
+        boolean isCorrect = launcher.checkWord();
         buildMap();
     }
 

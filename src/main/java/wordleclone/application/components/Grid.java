@@ -48,4 +48,7 @@ public class Grid {
     public Line getLine(int i){
         return lines[i];
     }
+    public boolean isFull(){
+        return capacity <= currentLine;
+    }
 }
