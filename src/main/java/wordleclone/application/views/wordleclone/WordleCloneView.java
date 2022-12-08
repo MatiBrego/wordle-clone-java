@@ -2,6 +2,7 @@ package wordleclone.application.views.wordleclone;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Label;
@@ -48,6 +49,7 @@ public class WordleCloneView extends VerticalLayout {
         }
         boolean isCorrect = launcher.checkWord();
         buildMap();
+        if(!isCorrect && grid.isFull()) showAnswer();
     }
 
     public Component getFilledSquareComponent(Square square){
@@ -102,6 +104,7 @@ public class WordleCloneView extends VerticalLayout {
         HorizontalLayout currentLine = new HorizontalLayout();
         currentLine.setSizeUndefined();
         Line cline = grid.getCurrentLine();
+        if (cline == null) return;
         for (int j = 0; j < cline.getCapacity(); j++) {
             Component comp = getFillableSquareComponent();
             MoveHandler.addSquare((TextArea) comp, j);
@@ -126,5 +129,22 @@ public class WordleCloneView extends VerticalLayout {
         enter.addClickShortcut(Key.ENTER);
         enter.addClickListener(event -> addAndCheckWord());
         add(enter);
+    }
+
+    public void showAnswer(){
+        Dialog dialog = new Dialog();
+
+        dialog.setHeaderTitle("Correct Answer");
+
+        dialog.add(new Label(word));
+
+        Button cancelButton = new Button("Back", e -> dialog.close());
+        Button reloadButton = new Button("Play Again", e -> UI.getCurrent().getPage().reload());
+
+        dialog.getFooter().add(cancelButton);
+        dialog.getFooter().add(reloadButton);
+
+        add(dialog);
+        dialog.open();
     }
 }

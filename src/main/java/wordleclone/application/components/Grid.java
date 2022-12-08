@@ -26,6 +26,8 @@ public class Grid {
         Returns the line in the "currentLine" position
      */
     public Line getCurrentLine(){
+        if(isFull())
+            return null;
         return lines[currentLine];
     }
 
