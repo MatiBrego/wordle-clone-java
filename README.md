@@ -7,4 +7,5 @@ For the front end, the project uses the Vaadin framework -> https://vaadin.com/
 
 
 
-   > <img src= ReadMeImgs/Pic1.png? width=50% height=50%>
+   > <img src= ReadMeImgs/Pic1.png? width=50% height=50%> <img src= ReadMeImgs/Pic2.png? width=50% height=50%>
+   > <img src= ReadMeImgs/Pic3.png? width=50% height=50%>
